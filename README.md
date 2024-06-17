@@ -104,7 +104,7 @@ circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
 
-The synthesis respects the coupling map of the device: it can be run safely after other routing passes without "messing up" the circuit, so the overall circuit will still follow the device restrictions. By default, the synthesis will replace the original sub-circuit only if the synthesized sub-circuit improves the original (currently only checking cnot count), but this can be forced to always replace the circuit by setting `replace_only_if_better=False`.
+The synthesis respects the coupling map of the device: it can be run safely after other routing passes without "messing up" the circuit, so the overall circuit will still follow the device restrictions. By default, the synthesis will replace the original sub-circuit only if the synthesized sub-circuit improves the original (currently only checking `CNOT` count), but this can be forced to always replace the circuit by setting `replace_only_if_better=False`.
 
 The following synthesis passes are available from `qiskit_transpiler_service.ai.synthesis`:
 
@@ -126,7 +126,7 @@ For sub-circuit to be synthesized by the AI synthesis passes, it must lay on a c
 
 To complement the synthesis passes we also provide custom collection passes for Cliffords, Linear Functions and Permutations that can be imported from `qiskit_transpiler_service.ai.collection`:
 
-- *CollectCliffords*: Collects Clifford blocks as `Instruction` objects and stores the original sub-circuit to compare against it after synthesis.
+- *CollectCliffords*: Collects `Clifford` blocks as `Instruction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectLinearFunctions*: Collects blocks of `SWAP` and `CX` as `LinearFunction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
 
